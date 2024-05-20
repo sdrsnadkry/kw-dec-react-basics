@@ -1,18 +1,27 @@
-import { useState } from "react";
+import { useEffect } from "react";
 
-export default function Counter() {
-  const [number, setNumber] = useState(4);
+export default function Counter(props) {
 
-  function increment() {
-    setNumber(number + 1);
-  }
+  useEffect(function(){
+    console.log("The random String was changed", props.randomString)
+  }, [props.randomString])
+  
+  useEffect(function(){
+
+    console.log("The counter was changed", props.counter)
+    
+  },[props.counter])
+
+ 
 
   return (
     <div>
-      <h1>Count - {number}</h1>
+      <h1>Count - {props.counter}</h1>
 
-      <button onClick={increment}>Increment</button>
-      <button onClick={increment}>Decrement</button>
+      <h2>Random String = {props.randomString}</h2>
+
+      <button onClick={props.increment}>Increment</button>
+      <button onClick={props.decrement}>Decrement</button>
     </div>
   );
 }
